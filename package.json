@@ -1,0 +1,24 @@
+{
+  "name": "jost",
+  "version": "1.0.0",
+  "description": "A simple and mini analytics service for your web apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosiasAurel/jost.git"
+  },
+  "keywords": [
+    "Analytics",
+    "microservice",
+    "data"
+  ],
+  "author": "Josias Aurel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JosiasAurel/jost/issues"
+  },
+  "homepage": "https://github.com/JosiasAurel/jost#readme"
+}
