@@ -4,7 +4,10 @@
   "description": "The web client for Jost analytics",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
   },
   "keywords": [
     "UI",
