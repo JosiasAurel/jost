@@ -17,6 +17,12 @@ const Index: FunctionComponent = (): JSX.Element => {
                     It is free and open, modify and customize it at your wish.
                 </p>
             </main>
+
+            <section className="my-10 flex justify-center text-white">
+                <button className="text-center font-semibold p-4 bg-indigo-500 rounded-lg">
+                    Start Measuring
+                </button>
+            </section>
         </div>
     )
 }
