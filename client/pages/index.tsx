@@ -8,30 +8,30 @@ const Index: FunctionComponent = (): JSX.Element => {
     return (
         <article>
             <Header />
-            <main className="my-36 h-screen">
-                <h1 className="m-12 text-6xl font-bold text-center">
+            <main className="my-20 sm:my-36 h-screen w-screen">
+                <h1 className="m-12 text-3xl sm:text-6xl font-bold text-center">
                     Free, Open Source and Minimal analytics service for your web apps.
                 </h1>
 
-                <p className="m-6 text-4xl text-center">
+                <p className="m-6 text-2xl text-center text-gray-600">
                     <em>Jost Analytics</em> helps you track and measure your website or web app's traffic. <br />
                     It is free and open, modify and customize it at your wish.
                 </p>
 
                 <section className="my-20 flex justify-center text-white">
-                <button className="text-center font-semibold p-4 bg-indigo-500 rounded-lg ring-4">
+                <button className=" w-11/12 sm:w-52 text-center font-semibold p-4 bg-indigo-500 rounded-lg ring-4">
                     Start Measuring
                 </button>
             </section>
             </main>
 
-            <section className="-my-20">
+            <section className=" -my-48">
                 <h2 className="text-5xl font-semibold m-4 text-center">
                     Features
                 </h2>
 
                 <div className="flex justify-center">
-                    <div className="flex flex-row "> {/* grid grid-cols-2 grid-rows-2 */}
+                    <div className="flex flex-col sm:flex-row "> {/* grid grid-cols-2 grid-rows-2 */}
                     <FeatureCard 
                         title="Page Views" 
                         description="Track your web app page views." 
@@ -61,7 +61,15 @@ const Index: FunctionComponent = (): JSX.Element => {
                 </div>
             </section>
 
+            <section className="my-52">
+                <h2 className="font-semibold text-5xl text-center">Want to support the project ?</h2>
 
+            </section>
+
+        <footer className="flex justify-evenly text-gray-600 my-4">
+            <a href="https://github.com/JosiasAurel/jost">GitHub</a>
+            <a href="">Sponsor</a>
+        </footer>
         </article>
     )
 }
