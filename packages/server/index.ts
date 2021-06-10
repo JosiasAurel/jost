@@ -1,8 +1,13 @@
 import express, { Application, Request, Response } from "express";
+import cors from "cors";
 
 const app: Application = express();
 
-const port: number = 5000 || process.env.PORT;
+// resgiter middlewares
+app.use(cors());
+app.use(express.json())
+
+const port: number = 8000 || process.env.PORT;
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello from server");
