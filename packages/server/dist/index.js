@@ -11,7 +11,7 @@ var app = express_1.default();
 app.use(cors_1.default());
 app.use(express_1.default.json());
 // connect to Mongo Database
-mongoose.connect("mongodb://localhost:27017/jost", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/jost", { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 // import models 
 var index_1 = require("./models/index");
