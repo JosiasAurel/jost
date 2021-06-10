@@ -12,7 +12,8 @@ const PageSchema = new Schema<PageStruct>({
     url: {type: String, require: true},
     viewCount: {type: String, required: true},
     os: [{type: String, required: true}],
-    app: {type: Schema.Types.ObjectId, ref: "apps"}
+    app: {type: Schema.Types.ObjectId, ref: "apps"},
+    _id: {type: String, required: true}
 });
 
 const Page = model<PageStruct>("Page", PageSchema);

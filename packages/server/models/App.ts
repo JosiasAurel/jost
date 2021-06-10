@@ -4,14 +4,14 @@ import { Schema, model, Document } from "mongoose";
 interface AppStruct extends Document {
     name: string
     description: string
-    id: string
+    id_: string
     owner: any
 }
 
 const AppSchema: any = new Schema<AppStruct>({
-    name: String,
-    description: String,
-    id: String,
+    name: {type: String, required: true},
+    description: {type: String, required: true},
+    _id: {type: String, required: true},
     owner: {type: Schema.Types.ObjectId, ref: "user"},
     pages: [{type: Schema.Types.ObjectId, ref: "Page"}]
 });
