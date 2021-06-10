@@ -1,5 +1,5 @@
 
-import { stringify } from "querystring";
+
 import { User } from "../models";
 
 export function createUser( name: string, password: string): any {
@@ -14,10 +14,12 @@ export function createUser( name: string, password: string): any {
 }
 
 export function loginUser(name: string, password: string): any {
-    User.findOne({name: name, password: password}, (err: any, user: any) => {
+    let user_ = User.findOne({name: name, password: password}, (err: any, user: any) => {
         if (err) return err
         return user
     });
+
+    return user_;
 }
 
 export function deleteUser(name: string, password: string): object {
