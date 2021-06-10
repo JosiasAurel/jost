@@ -8,4 +8,9 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Hello from server");
 });
 
+app.post("/register-request", (req: Request, res: Response) => {
+    const data = req.body;
+    console.log(data);
+});
+
 app.listen(port, () => console.log(`Listening at ${port}`));

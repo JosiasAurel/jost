@@ -11,9 +11,9 @@ const Header: FunctionComponent = (): JSX.Element => {
             </nav>
 
             <nav className="hidden sm:flex mx-6">
-                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md" href="https://github.com/JosiasAurel/jost">GitHub</a>
-                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md" href="">Sponsor</a>
-                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md"  href="">My Account</a>
+                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md hover:shadow-dm" href="https://github.com/JosiasAurel/jost">GitHub</a>
+                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md hover:shadow-dm" href="">Sponsor</a>
+                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md hover:shadow-dm"  href="">My Account</a>
             </nav>
         </header>
     )

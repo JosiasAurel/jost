@@ -1,0 +1,15 @@
+
+UserAccount:
+	- name
+	- password
+	- ID
+	
+Apps:
+	- App 1 [reference -> UserAccountID]
+	- App 2 [reference -> UserAccountID]
+
+AppStruct:
+	name: string
+	description: string
+	ID: string
+	owner: [reference -> UserAccountID]
