@@ -27,5 +27,9 @@ exports = function(app: Application) {
         createApp(res, name, description);
     });
 
-    
+    app.post("/apps/update/:appId", (req: Request, res: Response) => {
+        const appId = req.params.appId;
+        const { name, description } = req.body;
+        updateApp(res, name, description, appId);
+    });
 }

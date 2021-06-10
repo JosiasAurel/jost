@@ -18,9 +18,8 @@ export function deleteApp(res: Response, id: string): any {
     return { status: "Success" }
 }
 
-export function updateApp(res: Response, req: Request, id: string): any {
-    const { newName, newDescription } = req.body;
-    App.findByIdAndUpdate(id, { name: newName, description: newDescription}, { new: true }, (err: any, nApp: any) => {
+export function updateApp(res: Response, name: string, description: string , id: string): any {
+    App.findByIdAndUpdate(id, { name: name, description: description}, { new: true }, (err: any, nApp: any) => {
         if (err) res.send(err);
         res.send(nApp);
     })
