@@ -1,13 +1,21 @@
 
-import * as mongoose from "mongoose";
+import { Schema, model, Document } from "mongoose";
 
-const AppSchema: any = new mongoose.Schema({
+interface AppStruct extends Document {
+    name: string
+    description: string
+    id: string
+    owner: any
+}
+
+const AppSchema: any = new Schema<AppStruct>({
     name: String,
     description: String,
     id: String,
-    owner: {type: mongoose.Schema.Types.ObjectId, ref: "user"}
+    owner: {type: Schema.Types.ObjectId, ref: "user"},
+    pages: [{type: Schema.Types.ObjectId, ref: "Page"}]
 });
 
-const App = mongoose.model("App", AppSchema);
+const App = model<AppStruct>("App", AppSchema);
 
 export { App };
