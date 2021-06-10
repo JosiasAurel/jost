@@ -5,13 +5,13 @@ import { createApp, updateApp, deleteApp } from "../controllers/apps";
 exports = function(app: Application) {
 
     // route to signup user
-    app.post("users/signup", (req: Request, res: Response) => {
+    app.post("/users/signup", (req: Request, res: Response) => {
     const { name, password } = req.body;
         createUser(name, password);
     });
 
     // route to delete user
-    app.post("users/delete", (req: Request, res: Response) => {
+    app.post("/users/delete", (req: Request, res: Response) => {
         const { name, password } = req.body;
         deleteUser(name, password);
     });
@@ -21,4 +21,11 @@ exports = function(app: Application) {
         const { name, passsword } = req.body;
         loginUser(name, passsword);
     }); */
+
+    app.post("/apps/create", (req: Request, res: Response) => {
+        const { name, description } = req.body;
+        createApp(res, name, description);
+    });
+
+    
 }
