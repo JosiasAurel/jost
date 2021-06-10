@@ -1,11 +1,13 @@
 
 
 import { User } from "../models";
+import { generateUserId } from "../utils/idUtils";
 
 export function createUser( name: string, password: string): any {
     let newUser = new User({
         name: name,
-        password: password
+        password: password,
+        _id: generateUserId()
     });
 
     newUser.save();

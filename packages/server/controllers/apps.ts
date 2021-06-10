@@ -1,10 +1,12 @@
 import { Response, Request } from "express";
 import { App } from "../models";
+import { generateAppId } from "../utils/idUtils";
 
 export function createApp(res: Response, name: string, description: string): any {
     let newApp = new App({
         name: name,
-        description: description
+        description: description,
+        _id: generateAppId()
     });
     newApp.save((err, app) => {
         if (err) return err
