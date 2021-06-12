@@ -2,13 +2,14 @@ import { apps, users } from ".";
 import { generateAppId } from "../utils/idUtils";
 import { GetResponse } from "deta/dist/types/types/base/response";
 
-async function createApp(name: string, description: string, owner: string): Promise<GetResponse> {
+async function createApp(name: string, description: string, owner: string, baseUrl: string) {
     const appId = generateAppId();
     
     const newApp = {
         name: name,
         description: description, 
-        owner: owner
+        owner: owner,
+        baseUrl: baseUrl
     }
 
     apps.put(newApp, appId);
@@ -16,7 +17,7 @@ async function createApp(name: string, description: string, owner: string): Prom
     // update the apps in the user base
     users.update({app: users.util.append(appId)}, owner);
 
-    return { name: name, description: description, owner: owner, id: appId };
+    return { name: name, description: description, owner: owner, id: appId, baseUrl: baseUrl };
 }
 
 function deleteApp(id: string): boolean {
@@ -30,9 +31,10 @@ async function updateApp(name: string, description: string , appId: string): Pro
     return updatedApp;
 }
 
-async function getApps(owner: string): any {
-    let appsBy = await apps.fetch({owner: owner}).next();
+async function getApps(owner: string) {
+    let returnApps;
+    let appsBy = await apps.fetch({"owner": owner}).next();
     return appsBy;
 }
 
-export { createApp, deleteApp, updateApp };
+export { createApp, deleteApp, updateApp, getApps };
