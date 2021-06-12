@@ -1,8 +1,8 @@
-import { apps } from ".";
+import { apps, users } from ".";
 import { generateAppId } from "../utils/idUtils";
 import { GetResponse } from "deta/dist/types/types/base/response";
 
-function createApp(name: string, description: string, owner: string): any {
+async function createApp(name: string, description: string, owner: string): Promise<GetResponse> {
     const appId = generateAppId();
     
     const newApp = {
@@ -12,6 +12,9 @@ function createApp(name: string, description: string, owner: string): any {
     }
 
     apps.put(newApp, appId);
+
+    // update the apps in the user base
+    users.update({app: users.util.append(appId)}, owner);
 
     return { name: name, description: description, owner: owner, id: appId };
 }
