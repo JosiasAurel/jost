@@ -21,3 +21,8 @@ function deleteApp(id: string): boolean {
     return true;
 }
 
+async function updateApp(name: string, description: string , appId: string): Promise<GetResponse> {
+    apps.update({name: name, description: description}, appId);
+    const updatedApp = await apps.get(appId);
+    return updatedApp;
+}
