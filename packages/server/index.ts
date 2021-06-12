@@ -36,8 +36,22 @@ app.post("/register", (req: Request, res: Response) => {
 
     let createdUser = createUser(name, password);
 
-    return createdUser;
+    res.json(createdUser);
 });
+
+
+/* App endpoints */
+app.post("/app", (req: Request, res: Response) => {
+
+    // app info
+    const { name, description, owner } = req.body;
+
+    let createdApp = createApp(name, description, owner);
+
+    res.json(createdApp);
+});
+
+
 
 
 app.listen(port, () => console.log(`Listening at ${port}`));
