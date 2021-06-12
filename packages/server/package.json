@@ -16,14 +16,14 @@
   "license": "MIT",
   "dependencies": {
     "@types/cors": "^2.8.8",
-    "@types/mongoose": "^5.11.97",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "deta": "^0.0.10",
     "express": "^4.17.1",
-    "mongoose": "^5.12.3",
     "nanoid": "^3.1.23"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.12",
     "@types/node": "^15.12.1",
     "ts-node": "^10.0.0",
