@@ -51,7 +51,15 @@ app.post("/app", (req: Request, res: Response) => {
     res.json(createdApp);
 });
 
+app.delete("/app/:appId", (req: Request, res: Response) => {
+    // get app ID
+    const appId: string = req.params.appId;
 
+    // delete app
+    deleteApp(appId);
+
+    res.json({ Message: `Deleted app with ID ${appId}` });
+});
 
 
 app.listen(port, () => console.log(`Listening at ${port}`));
