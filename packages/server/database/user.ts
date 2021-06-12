@@ -27,7 +27,7 @@ function createUser(name: string, password: string) {
         name: name,
         password: hashedPassword,
         id: newUserKey,
-        apps: []
+        app: []
     }
     return newUserStruct;
 
