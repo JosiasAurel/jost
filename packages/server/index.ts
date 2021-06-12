@@ -78,6 +78,17 @@ app.delete("/app/:appId", (req: Request, res: Response) => {
     res.json({ message: `Deleted app with ID ${appId}` });
 });
 
+/* Pages endpoint */
+
+app.post("/pages", (req: Request, res: Response) => {
+    // get page info
+    const { url, platform, appId } = req.body;
+
+    let createdPage: any = createPage(url, platform, appId);
+
+    res.json(createdPage);
+});
+
 
 app.listen(port, () => console.log(`Listening at ${port}`));
 
