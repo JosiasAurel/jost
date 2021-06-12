@@ -9,36 +9,39 @@ interface Page {
     app: string
 }
 
-function createPage(url: string, platform: string, appId: string): any {
+async function createPage(url: string, platform: string, appId: string) {
 
     /* The key of the page will be the url of the page */
     /* This is because to update it later, we are required a key which we won`t get from the url */
 
     // const pageId = generatePageId(); // this is useless for now
 
-    const newPage = {
-        url: url,
-        pageViews: 1, // initally set to 1 when page is created because when it is created, it means there is a visit
-        platform: [platform],
-        app: appId
-    }
+    let rotatePage: any = await pages.get(url);
 
-    pages.put(newPage, url);
+    if (rotatePage === null) {
+            const newPage = {
+            url: url,
+            pageViews: 1, // initally set to 1 when page is created because when it is created, it means there is a visit
+            platform: [platform],
+            app: appId
+        }
 
-    return {
-        url: url,
-        platform: [platform],
-        appId: appId,
-        pageViews: 1
+        pages.put(newPage, url);
+
+        return {
+            url: url,
+            platform: [platform],
+            appId: appId,
+            pageViews: 1
+        }
+    } else {
+            pages.update({
+            pageViews: pages.util.increment(1),
+            platform: pages.util.append(platform)
+        }, url);
+        return "Updated";
     }
 } 
 
-function updatePage(url: string, platform: string): any {
-    pages.update({
-        pageViews: pages.util.increment(1),
-        platform: pages.util.append(platform)
-    }, url);
-    return "Updated";
-}
 
-export { createPage, updatePage };
+export { createPage };
