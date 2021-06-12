@@ -3,8 +3,8 @@ import cors from "cors";
 
 // import CRUD handlers
 import { createUser, deleteUser } from "./database/user";
-import { createApp, deleteApp, updateApp } from "./database/app";
-import { createPage, updatePage } from "./database/page";
+import { createApp, deleteApp, updateApp, getApps } from "./database/app";
+import { createPage } from "./database/page";
 
 const app: Application = express();
 
@@ -41,9 +41,9 @@ app.post("/register", (req: Request, res: Response) => {
 app.post("/app", (req: Request, res: Response) => {
 
     // app info
-    const { name, description, owner } = req.body;
+    const { name, description, owner, baseUrl } = req.body;
 
-    let createdApp = createApp(name, description, owner);
+    let createdApp = createApp(name, description, owner, baseUrl);
 
     res.json(createdApp);
 });
@@ -62,6 +62,13 @@ app.put("/app/appId", (req: Request, res: Response) => {
     res.json({message: `Updated app with ID ${appId}`});
 });
 
+app.get("/apps/:owner", async (req: Request, res: Response) => {
+    const ownerId: string = req.params.owner;
+    let data = await (await getApps(ownerId)).value;
+    console.log(data);
+    res.send(data);
+});
+
 // delete an app
 app.delete("/app/:appId", (req: Request, res: Response) => {
     // get app ID
@@ -77,19 +84,13 @@ app.delete("/app/:appId", (req: Request, res: Response) => {
 
 app.post("/pages", (req: Request, res: Response) => {
     // get page info
-    const { url, platform, appId } = req.body;
+    const { url, platform } = req.body;
 
-    let createdPage: any = createPage(url, platform, appId);
-
+    const createdPage = createPage(url, platform);
     res.json(createdPage);
 });
 
-app.post("/register-request", (req: Request, res: Response) => {
-    const { platform, url } = req.body;
 
-    updatePage(url, platform);
-    res.json({message: `Update page with url ${url}`});
-});
 
 app.listen(port, () => console.log(`Listening at ${port}`));
 
