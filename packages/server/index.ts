@@ -41,6 +41,8 @@ app.post("/register", (req: Request, res: Response) => {
 
 
 /* App endpoints */
+
+// create an app
 app.post("/app", (req: Request, res: Response) => {
 
     // app info
@@ -51,6 +53,21 @@ app.post("/app", (req: Request, res: Response) => {
     res.json(createdApp);
 });
 
+// update app
+app.put("/app/appId", (req: Request, res: Response) => {
+
+    // get app id
+    const appId: string = req.params.appId;
+
+    // get app new info
+    const { name, description } = req.body;
+
+    updateApp(name, description, appId);
+
+    res.json({message: `Updated app with ID ${appId}`});
+});
+
+// delete an app
 app.delete("/app/:appId", (req: Request, res: Response) => {
     // get app ID
     const appId: string = req.params.appId;
@@ -58,7 +75,7 @@ app.delete("/app/:appId", (req: Request, res: Response) => {
     // delete app
     deleteApp(appId);
 
-    res.json({ Message: `Deleted app with ID ${appId}` });
+    res.json({ message: `Deleted app with ID ${appId}` });
 });
 
 
