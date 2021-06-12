@@ -1,4 +1,4 @@
-import { pages, users } from ".";
+import { pages } from ".";
 import { generatePageId } from "../utils/idUtils";
 
 interface Page {
@@ -9,7 +9,7 @@ interface Page {
     app: string
 }
 
-async function createPage(url: string, platform: string, appId: string) {
+async function createPage(url: string, platform: string) {
 
     /* The key of the page will be the url of the page */
     /* This is because to update it later, we are required a key which we won`t get from the url */
@@ -22,16 +22,14 @@ async function createPage(url: string, platform: string, appId: string) {
             const newPage = {
             url: url,
             pageViews: 1, // initally set to 1 when page is created because when it is created, it means there is a visit
-            platform: [platform],
-            app: appId
+            platform: [platform]
         }
 
         pages.put(newPage, url);
 
         return {
-            url: url,
+               url: url,
             platform: [platform],
-            appId: appId,
             pageViews: 1
         }
     } else {
