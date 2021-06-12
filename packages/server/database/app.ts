@@ -16,3 +16,8 @@ function createApp(name: string, description: string, owner: string): any {
     return { name: name, description: description, owner: owner, id: appId };
 }
 
+function deleteApp(id: string): boolean {
+    apps.delete(id);
+    return true;
+}
+
