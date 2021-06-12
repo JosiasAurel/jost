@@ -31,7 +31,7 @@ async function updateApp(name: string, description: string , appId: string): Pro
 }
 
 async function getApps(owner: string): any {
-    let appsBy = await apps.fetch({owner: owner});
+    let appsBy = await apps.fetch({owner: owner}).next();
     return appsBy;
 }
 
