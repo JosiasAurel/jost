@@ -18,11 +18,6 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Hello from server");
 });
 
-app.post("/register-request", (req: Request, res: Response) => {
-    const data = req.body;
-    console.log(data);
-});
-
 app.get("/:name", (req: Request, res: Response) => {
     res.send(`Hello ${req.params.name}`);
 })
@@ -89,6 +84,12 @@ app.post("/pages", (req: Request, res: Response) => {
     res.json(createdPage);
 });
 
+app.post("/register-request", (req: Request, res: Response) => {
+    const { platform, url } = req.body;
+
+    updatePage(url, platform);
+    res.json({message: `Update page with url ${url}`});
+});
 
 app.listen(port, () => console.log(`Listening at ${port}`));
 

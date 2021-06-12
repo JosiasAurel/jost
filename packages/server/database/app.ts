@@ -29,3 +29,5 @@ async function updateApp(name: string, description: string , appId: string): Pro
     const updatedApp = await apps.get(appId);
     return updatedApp;
 }
+
+export { createApp, deleteApp, updateApp };

@@ -37,3 +37,4 @@ async function deleteUser(key: string) {
     await users.delete(key);
 }
 
+export { createUser, deleteUser,  };

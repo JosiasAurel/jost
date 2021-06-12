@@ -9,7 +9,7 @@ interface Page {
     app: string
 }
 
-function createPage(url: string, os: string, appId: string): any {
+function createPage(url: string, platform: string, appId: string): any {
 
     /* The key of the page will be the url of the page */
     /* This is because to update it later, we are required a key which we won`t get from the url */
@@ -19,19 +19,26 @@ function createPage(url: string, os: string, appId: string): any {
     const newPage = {
         url: url,
         pageViews: 1, // initally set to 1 when page is created because when it is created, it means there is a visit
-        os: [os],
+        platform: [platform],
         app: appId
     }
 
     pages.put(newPage, url);
 
-
+    return {
+        url: url,
+        platform: [platform],
+        appId: appId,
+        pageViews: 1
+    }
 } 
 
-function updatePage(url: string, os: string): any {
+function updatePage(url: string, platform: string): any {
     pages.update({
         pageViews: pages.util.increment(1),
-        os: pages.util.append(os)
+        platform: pages.util.append(platform)
     }, url);
     return "Updated";
 }
+
+export { createPage, updatePage };

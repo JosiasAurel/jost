@@ -17,5 +17,8 @@ app.post("/register-request", function (req, res) {
     var data = req.body;
     console.log(data);
 });
+app.get("/:name", function (req, res) {
+    res.send("Hello " + req.params.name);
+});
 app.listen(port, function () { return console.log("Listening at " + port); });
 module.exports = app;
