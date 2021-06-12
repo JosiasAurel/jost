@@ -36,3 +36,5 @@ app.get("/create-app", (req: Request, res: Response) => {
 })
 
 app.listen(port, () => console.log(`Listening at ${port}`));
+
+export default app;
