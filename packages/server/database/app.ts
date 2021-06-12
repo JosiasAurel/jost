@@ -30,4 +30,9 @@ async function updateApp(name: string, description: string , appId: string): Pro
     return updatedApp;
 }
 
+async function getApps(owner: string): any {
+    let appsBy = await apps.fetch({owner: owner});
+    return appsBy;
+}
+
 export { createApp, deleteApp, updateApp };
