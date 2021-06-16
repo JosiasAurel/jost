@@ -47,7 +47,9 @@ var app_1 = require("./database/app");
 var page_1 = require("./database/page");
 var app = express_1.default();
 // resgiter middlewares
-app.use(cors_1.default());
+app.use(cors_1.default({
+    origin: "*"
+}));
 app.use(express_1.default.json());
 var port = 8000 || process.env.PORT;
 app.get("/", function (req, res) {
@@ -69,6 +71,7 @@ app.post("/register", function (req, res) {
 app.post("/app", function (req, res) {
     // app info
     var _a = req.body, name = _a.name, description = _a.description, owner = _a.owner, baseUrl = _a.baseUrl;
+    console.log(req.body);
     var createdApp = app_1.createApp(name, description, owner, baseUrl);
     res.json(createdApp);
 });
@@ -106,11 +109,40 @@ app.delete("/app/:appId", function (req, res) {
     res.json({ message: "Deleted app with ID " + appId });
 });
 /* Pages endpoint */
-app.post("/pages", function (req, res) {
+app.post("/pages/create", function (req, res) {
     // get page info
     var _a = req.body, url = _a.url, platform = _a.platform;
     var createdPage = page_1.createPage(url, platform);
     res.json(createdPage);
 });
+app.post("/pages", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var base, pages;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                base = req.body.base;
+                return [4 /*yield*/, page_1.getPages("" + base)];
+            case 1: return [4 /*yield*/, (_a.sent()).value];
+            case 2:
+                pages = _a.sent();
+                console.log(pages);
+                res.send({ pages: pages });
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get("/app/:appId", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var info;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, app_1.getApp(req.params.appId)];
+            case 1:
+                info = _a.sent();
+                // console.log(info);
+                res.send(info);
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.listen(port, function () { return console.log("Listening at " + port); });
 module.exports = app;
