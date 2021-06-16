@@ -1,5 +1,6 @@
 import { pages } from ".";
 import { generatePageId } from "../utils/idUtils";
+import { thisDate } from "../utils/dateUtil";
 
 interface Page {
     url: string // the URL of the page in question
@@ -22,7 +23,7 @@ async function createPage(url: string, platform: string) {
             const newPage = {
             url: url,
             pageViews: 1, // initally set to 1 when page is created because when it is created, it means there is a visit
-            platform: [platform]
+            platform: [platform],
         }
 
         pages.put(newPage, url);
@@ -41,5 +42,9 @@ async function createPage(url: string, platform: string) {
     }
 } 
 
+async function getPages(base: string) {
+    const pages_ = await pages.fetch({"url?contains": base}).next();
+    return pages_;
+}
 
-export { createPage };
+export { createPage, getPages };
