@@ -37,4 +37,9 @@ async function getApps(owner: string) {
     return appsBy;
 }
 
-export { createApp, deleteApp, updateApp, getApps };
+async function getApp(id: string) {
+    const app: any = await apps.get(id);
+    return app;
+}
+
+export { createApp, deleteApp, updateApp, getApps, getApp };
