@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { Table } from "@geist-ui/react";
+import { Pie } from "react-chartjs-2";
 
 const serverAddr: string = "https://0wjb6h.deta.dev";
 // const serverAddr: string = "http://localhost:8000";
@@ -13,12 +14,55 @@ const serverAddr: string = "https://0wjb6h.deta.dev";
     owner: string
 } */
 
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28']
+
 interface AppPageProps {
     pagesData: any
     appData: any
 }
 
 const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.Element => {
+
+    let windows = 0;
+    let mac = 0;
+    let linux = 0;
+
+    function countPlatform(): void {
+        let osData = pagesData.pages;
+        osData.forEach((os) => {
+            os = os.platform;
+            os.forEach(o => {
+                if (o === "Windows") windows++
+                if (o === "Mac") mac++
+                if (o === "Linux") linux++
+            })
+        })
+    }
+
+    countPlatform();
+
+    const pieData = {
+    labels: ["Windows", "MacOS", "Linux"],
+    datasets: [
+        {
+            label: "Distribution of Platforms",
+            data: [windows, mac, linux],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+            ],
+        borderColor: [
+            'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        ],
+        borderWidth: 1
+        }
+    ]
+}
+
+
     const [App, setApp] = useState({
         name: appData.name,
         description: appData.description,
@@ -34,7 +78,8 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
     return (
         <div>
             <Header pageType="dashboard" appName={App.name} />
-            <div className="py-20 max-w-md m-12 border-black">
+            <div className="flex items-center">
+                <div className="py-20 max-w-md m-12 border-black">
                 <Table data={data}>
                     <Table.Column prop="url" label="URL" />
                     <Table.Column prop="pageViews" label="Page Views" />
@@ -51,6 +96,11 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
                             )
                         }) } */}
                 </Table>
+            </div>
+
+            <div className="max-w-xs">
+                <Pie data={pieData} />
+            </div>
             </div>
         </div>
     )
