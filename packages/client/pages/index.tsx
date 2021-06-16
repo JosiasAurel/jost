@@ -7,7 +7,7 @@ import FeatureCard from "../components/FeatureCard";
 const Index: FunctionComponent = (): JSX.Element => {
     return (
         <article>
-            <Header />
+            <Header pageType="any" />
             <main className="my-20 sm:my-36 h-screen w-screen">
                 <h1 className="m-12 text-3xl sm:text-6xl font-bold text-center">
                     Free, Open Source and Minimal analytics service for your web apps.
