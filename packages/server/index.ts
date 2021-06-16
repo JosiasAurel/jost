@@ -3,13 +3,15 @@ import cors from "cors";
 
 // import CRUD handlers
 import { createUser, deleteUser } from "./database/user";
-import { createApp, deleteApp, updateApp, getApps } from "./database/app";
-import { createPage } from "./database/page";
+import { createApp, deleteApp, updateApp, getApps, getApp } from "./database/app";
+import { createPage, getPages } from "./database/page";
 
 const app: Application = express();
 
 // resgiter middlewares
-app.use(cors());
+app.use(cors({
+    origin: "*"
+}));
 app.use(express.json());
 
 const port: number = 8000 || process.env.PORT;
@@ -42,6 +44,7 @@ app.post("/app", (req: Request, res: Response) => {
 
     // app info
     const { name, description, owner, baseUrl } = req.body;
+    console.log(req.body)
 
     let createdApp = createApp(name, description, owner, baseUrl);
 
@@ -82,12 +85,25 @@ app.delete("/app/:appId", (req: Request, res: Response) => {
 
 /* Pages endpoint */
 
-app.post("/pages", (req: Request, res: Response) => {
+app.post("/pages/create", (req: Request, res: Response) => {
     // get page info
     const { url, platform } = req.body;
 
     const createdPage = createPage(url, platform);
     res.json(createdPage);
+});
+
+app.post("/pages", async (req: Request, res: Response) => {
+    const { base } = req.body;
+    const pages = await (await getPages(`${base}`)).value;
+    console.log(pages)
+    res.send({pages: pages});
+})
+
+app.get("/app/:appId", async (req: Request, res: Response) => {
+    let info = await getApp(req.params.appId);
+    // console.log(info);
+    res.send(info);
 });
 
 
