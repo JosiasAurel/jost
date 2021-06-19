@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { Table } from "@geist-ui/react";
 import { Pie, Bar } from "react-chartjs-2";
-import { Modal } from "@geist-ui/react";
+import { Modal, Code, Card } from "@geist-ui/react";
 import { lowlight } from "lowlight";
 
 const serverAddr: string = "https://0wjb6h.deta.dev";
@@ -27,6 +27,7 @@ interface AppPageProps {
     appData: any
     getInitialProps: any
 }
+
 
 const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.Element => {
 
@@ -118,6 +119,8 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
     function modalCloseHandler() {
         setOpen(false);
     }
+
+    let script_ = '<script src="https://cdn.jsdelivr.net/npm/jost-analytics@1.3.0/jost.min.js"></script>'
     return (
         <div>
             <Header pageType="dashboard" userName={user.name} appName={App.name} />
@@ -127,7 +130,7 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
             <div className="my-32 w-88 max-h-20">
                 {/* <Bar type="" data={lineData} /> */}
             </div>
-            <div className="flex items-center my-20">
+            <div className="flex items-center justify-evenly my-20">
             <div className="m-4">
                 <Table data={data}>
                     <Table.Column prop="url" label="URL" />
@@ -143,6 +146,13 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
             <Modal open={open} onClose={modalCloseHandler}>
                     <Modal.Title> Create New App </Modal.Title>
                     <Modal.Content>
+                        <div>
+                            <Code>
+                                <Card>
+                                    {script_}
+                                </Card>
+                            </Code>
+                        </div>
                         <div>
                             
                         </div>

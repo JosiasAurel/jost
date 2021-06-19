@@ -18,7 +18,7 @@ const App: FunctionComponent<AppInfo> = ({ name, description, url, id }): JSX.El
                     <Card hoverable>
                     <h2 className="font-bold"> {name} </h2>
                     <p> {description} </p>
-                    <a className="shadow-md p-1 rounded bg-indigo-600 text-white" href={url}> {url} </a>
+                    <a className="shadow-md p-1 rounded bg-indigo-600 text-white overflow-scroll max-w-min" href={url}> {url} </a>
                 </Card>
                 </div>
             </Link>
