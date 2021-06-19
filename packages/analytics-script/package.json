@@ -1,0 +1,15 @@
+{
+  "name": "jost-analytics",
+  "version": "1.3.0",
+  "description": "The official analytics script for Jost",
+  "main": "jost.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "analytics",
+    "script"
+  ],
+  "author": "Josias Aurel",
+  "license": "MIT"
+}

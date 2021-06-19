@@ -1,6 +1,6 @@
 /* Jost Analytics Tracking Script */
 function postAnalyticalData(data) {
-    var postedResponse = fetch("https://0wjb6h.deta.dev/register-request", {
+    var postedResponse = fetch("https://0wjb6h.deta.dev/pages/create", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
