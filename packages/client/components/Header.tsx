@@ -27,9 +27,6 @@ const Header: FunctionComponent<HeaderProps> = ({ pageType, appName, userName })
             </nav>
                 :
                 <nav>
-                    <button className="bg-gray-200 w-8 h-8 rounded mx-4">
-                        +
-                    </button>
 
                     <button className="bg-indigo-500 mx-4 p-2 rounded text-white">
                         { userName }
