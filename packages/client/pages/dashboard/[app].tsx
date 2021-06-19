@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { Table } from "@geist-ui/react";
-import { Pie } from "react-chartjs-2";
+import { Pie, Bar } from "react-chartjs-2";
 
 const serverAddr: string = "https://0wjb6h.deta.dev";
 // const serverAddr: string = "http://localhost:8000";
@@ -14,7 +14,6 @@ const serverAddr: string = "https://0wjb6h.deta.dev";
     owner: string
 } */
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28']
 
 interface AppPageProps {
     pagesData: any
@@ -23,6 +22,10 @@ interface AppPageProps {
 
 const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.Element => {
 
+
+    // Setting up the datatets
+
+    // Pie chart dataset
     let windows = 0;
     let mac = 0;
     let linux = 0;
@@ -62,6 +65,24 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
     ]
 }
 
+    let totalPageViewCount = 0;
+    const lineData = {
+  labels: ['16/06/2021', '17/06/2021', '18/06/2021', '18/06/2021', '19/06/2021', '20/06/2021'],
+  datasets: [
+    {
+      label: 'Number of Views',
+      data: [11, 8, 15, 6, 10, 18],
+      backgroundColor: [
+        'rgba(255, 99, 255, 0.2)',
+      ],
+      borderColor: [
+        'rgba(132, 99, 255, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
 
     const [App, setApp] = useState({
         name: appData.name,
@@ -75,10 +96,15 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
         setData(pagesData.pages)
     }, [data])
     console.log(pagesData.pages)
+    console.log(appData)
     return (
         <div>
             <Header pageType="dashboard" appName={App.name} />
-            <div className="flex items-center">
+
+            <div className="my-32 w-88 max-h-20">
+                <Bar data={lineData} />
+            </div>
+            <div className="flex items-center my-20">
                 <div className="py-20 max-w-md m-12 border-black">
                 <Table data={data}>
                     <Table.Column prop="url" label="URL" />
@@ -99,7 +125,7 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
             </div>
 
             <div className="max-w-xs">
-                <Pie data={pieData} />
+                <Pie type="" data={pieData} />
             </div>
             </div>
         </div>
