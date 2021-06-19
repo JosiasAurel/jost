@@ -14,14 +14,27 @@ const serverAddr: string = "https://0wjb6h.deta.dev";
     owner: string
 } */
 
+// interfaces
+interface JostUser {
+    name: string
+    id: string
+}
 
 interface AppPageProps {
     pagesData: any
     appData: any
+    getInitialProps: any
 }
 
 const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.Element => {
 
+    const [user, setUser] = useState<JostUser>({name: "", id: ""});
+
+    useEffect(() => {
+        // fetch user info from localstorage
+        const lUser = JSON.parse(localStorage.getItem("user"));
+        setUser(lUser);
+    }, []);
 
     // Setting up the datatets
 
@@ -99,7 +112,7 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
     console.log(appData)
     return (
         <div>
-            <Header pageType="dashboard" appName={App.name} />
+            <Header pageType="dashboard" userName={user.name} appName={App.name} />
 
             <div className="my-32 w-88 max-h-20">
                 <Bar data={lineData} />
