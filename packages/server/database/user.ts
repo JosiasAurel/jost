@@ -8,15 +8,17 @@ interface User {
     password: string
     apps: [string] // an id to all of their apps
     id: string
+    email: string
 }
 
-function createUser(name: string, password: string) {
+function createUser(name: string, password: string, email: string) {
 
     const hashedPassword: string = hashPass(password);
     const newUser = {
         name: name,
         password: hashedPassword,
-        apps: []
+        apps: [],
+        email: email
     }
 
     const newUserKey: string = generateUserId();
@@ -27,14 +29,22 @@ function createUser(name: string, password: string) {
         name: name,
         password: hashedPassword,
         id: newUserKey,
-        app: []
+        app: [],
+        email: email
     }
     return newUserStruct;
 
+}
+
+async function loginUser(email: string, name: string) {
+    let user = await users.fetch({"name?contains": name, "email?contains": email}).next()
+    return user;
 }
 
 async function deleteUser(key: string) {
     await users.delete(key);
 }
 
-export { createUser, deleteUser,  };
+
+
+export { createUser, deleteUser, loginUser };
