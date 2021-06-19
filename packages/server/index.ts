@@ -42,7 +42,7 @@ app.post("/register", (req: Request, res: Response) => {
 
 app.post("/login", async (req: Request, res: Response) => {
     const { name, email } = req.body;
-    let user: Array<any> =  await (await loginUser(email, name)).value[0];
+    let user =  await (await loginUser(email, name)).value[0];
     console.log(user);
     res.send(user);
 })
@@ -95,13 +95,14 @@ app.delete("/app/:appId", (req: Request, res: Response) => {
 
 /* Pages endpoint */
 
-app.post("/pages/create", (req: Request, res: Response) => {
+app.post("/pages/create", async (req: Request, res: Response) => {
     // get page info
     const { url, platform } = req.body;
 
     const pageDate: string = thisDate();
 
-    const createdPage = createPage(url, pageDate, platform);
+    const createdPage = await createPage(url, pageDate, platform);
+    console.log(`Request response ${createdPage}`)
     res.json(createdPage);
 });
 

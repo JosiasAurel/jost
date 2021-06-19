@@ -127,13 +127,22 @@ app.delete("/app/:appId", function (req, res) {
     res.json({ message: "Deleted app with ID " + appId });
 });
 /* Pages endpoint */
-app.post("/pages/create", function (req, res) {
-    // get page info
-    var _a = req.body, url = _a.url, platform = _a.platform;
-    var pageDate = dateUtil_1.thisDate();
-    var createdPage = page_1.createPage(url, pageDate, platform);
-    res.json(createdPage);
-});
+app.post("/pages/create", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, url, platform, pageDate, createdPage;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, url = _a.url, platform = _a.platform;
+                pageDate = dateUtil_1.thisDate();
+                return [4 /*yield*/, page_1.createPage(url, pageDate, platform)];
+            case 1:
+                createdPage = _b.sent();
+                console.log("Request response " + createdPage);
+                res.json(createdPage);
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.post("/pages", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var base, pages;
     return __generator(this, function (_a) {

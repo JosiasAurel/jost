@@ -16,8 +16,8 @@ async function createPage(url: string, date: string, platform: string) {
 
     // const pageId = generatePageId(); // this is useless for now
 
-    let rotatePage: any = await pages.get(date);
-
+    let rotatePage = await pages.get(`${date}^${url}`)
+    console.log(`Function ? ${rotatePage}`)
     if (rotatePage === null) {
         // const pageDate: string = thisDate();
             const newPage = {
@@ -27,10 +27,10 @@ async function createPage(url: string, date: string, platform: string) {
             pageDate: date
         }
 
-        pages.put(newPage, date);
+        pages.put(newPage, `${date}^${url}`);
 
         return {
-               url: url,
+            url: url,
             platform: [platform],
             pageViews: 1,
             pageDate: date
@@ -39,7 +39,7 @@ async function createPage(url: string, date: string, platform: string) {
             pages.update({
             pageViews: pages.util.increment(1),
             platform: pages.util.append(platform)
-        }, date);
+        }, `${date}^${url}`);
         return "Updated";
     }
 } 
