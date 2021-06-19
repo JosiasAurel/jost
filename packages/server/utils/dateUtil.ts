@@ -28,12 +28,14 @@ const monthsMap: any = {
 function thisDate() {
     let date_ = new Date();
     let _date = date_.getDate();
-    let day = date_.getDay();
+    // let day = date_.getDay();
     let year = date_.getFullYear();
     let month = date_.getMonth();
 
-    let date = new Date(year, month, _date);
+    let date = `${_date}/${month}/${year}`
     return date
 }
+
+// console.log(thisDate())
 
 export { thisDate };

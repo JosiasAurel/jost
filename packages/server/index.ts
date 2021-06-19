@@ -2,9 +2,13 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 
 // import CRUD handlers
-import { createUser, deleteUser } from "./database/user";
+import { createUser, deleteUser, loginUser } from "./database/user";
 import { createApp, deleteApp, updateApp, getApps, getApp } from "./database/app";
 import { createPage, getPages } from "./database/page";
+
+// import custom libs
+import { thisDate } from "./utils/dateUtil";
+import { stringify } from "querystring";
 
 const app: Application = express();
 
@@ -29,13 +33,19 @@ app.get("/:name", (req: Request, res: Response) => {
 app.post("/register", (req: Request, res: Response) => {
 
     // get registraion credentials
-    const { name, password } = req.body;
+    const { name, password, email } = req.body;
 
-    let createdUser = createUser(name, password);
+    let createdUser = createUser(name, password, email);
 
     res.json(createdUser);
 });
 
+app.post("/login", async (req: Request, res: Response) => {
+    const { name, email } = req.body;
+    let user: Array<any> =  await (await loginUser(email, name)).value[0];
+    console.log(user);
+    res.send(user);
+})
 
 /* App endpoints */
 
@@ -89,7 +99,9 @@ app.post("/pages/create", (req: Request, res: Response) => {
     // get page info
     const { url, platform } = req.body;
 
-    const createdPage = createPage(url, platform);
+    const pageDate: string = thisDate();
+
+    const createdPage = createPage(url, pageDate, platform);
     res.json(createdPage);
 });
 
@@ -102,7 +114,7 @@ app.post("/pages", async (req: Request, res: Response) => {
 
 app.get("/app/:appId", async (req: Request, res: Response) => {
     let info = await getApp(req.params.appId);
-    // console.log(info);
+    console.log(info);
     res.send(info);
 });
 

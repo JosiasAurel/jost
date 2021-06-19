@@ -2,7 +2,7 @@
 /* Jost Analytics Tracking Script */
 
 function postAnalyticalData(data): void {
-    const postedResponse = fetch(`http://localhost:8000/register-request`, {
+    const postedResponse = fetch(`https://0wjb6h.deta.dev/register-request`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -18,7 +18,7 @@ function getUserPLatform(): string {
     let platformsMap: any = {
         win: "Windows",
         linux: "Linux",
-        mac: "MacOS"
+        mac: "Mac"
     }
     if (platform_.toLowerCase().startsWith("win")) {
         return platformsMap["win"];

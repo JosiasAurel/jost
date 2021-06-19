@@ -45,6 +45,8 @@ var cors_1 = __importDefault(require("cors"));
 var user_1 = require("./database/user");
 var app_1 = require("./database/app");
 var page_1 = require("./database/page");
+// import custom libs
+var dateUtil_1 = require("./utils/dateUtil");
 var app = express_1.default();
 // resgiter middlewares
 app.use(cors_1.default({
@@ -62,10 +64,26 @@ app.get("/:name", function (req, res) {
 // endpoint for registration
 app.post("/register", function (req, res) {
     // get registraion credentials
-    var _a = req.body, name = _a.name, password = _a.password;
-    var createdUser = user_1.createUser(name, password);
+    var _a = req.body, name = _a.name, password = _a.password, email = _a.email;
+    var createdUser = user_1.createUser(name, password, email);
     res.json(createdUser);
 });
+app.post("/login", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, email, user;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, name = _a.name, email = _a.email;
+                return [4 /*yield*/, user_1.loginUser(email, name)];
+            case 1: return [4 /*yield*/, (_b.sent()).value[0]];
+            case 2:
+                user = _b.sent();
+                console.log(user);
+                res.send(user);
+                return [2 /*return*/];
+        }
+    });
+}); });
 /* App endpoints */
 // create an app
 app.post("/app", function (req, res) {
@@ -112,7 +130,8 @@ app.delete("/app/:appId", function (req, res) {
 app.post("/pages/create", function (req, res) {
     // get page info
     var _a = req.body, url = _a.url, platform = _a.platform;
-    var createdPage = page_1.createPage(url, platform);
+    var pageDate = dateUtil_1.thisDate();
+    var createdPage = page_1.createPage(url, pageDate, platform);
     res.json(createdPage);
 });
 app.post("/pages", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -138,7 +157,7 @@ app.get("/app/:appId", function (req, res) { return __awaiter(void 0, void 0, vo
             case 0: return [4 /*yield*/, app_1.getApp(req.params.appId)];
             case 1:
                 info = _a.sent();
-                // console.log(info);
+                console.log(info);
                 res.send(info);
                 return [2 /*return*/];
         }

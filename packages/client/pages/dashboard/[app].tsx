@@ -2,6 +2,8 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { Table } from "@geist-ui/react";
 import { Pie, Bar } from "react-chartjs-2";
+import { Modal } from "@geist-ui/react";
+import { lowlight } from "lowlight";
 
 const serverAddr: string = "https://0wjb6h.deta.dev";
 // const serverAddr: string = "http://localhost:8000";
@@ -110,10 +112,18 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
     }, [data])
     console.log(pagesData.pages)
     console.log(appData)
+
+    // modal and state
+    const [open, setOpen] = useState(false);
+    function modalCloseHandler() {
+        setOpen(false);
+    }
     return (
         <div>
             <Header pageType="dashboard" userName={user.name} appName={App.name} />
-
+            <button onClick={() => setOpen(true)} className="bg-indigo-500 text-white p-1 w-24 h-8 rounded m-4 fixed top-12">
+                    Connect App
+                </button>
             <div className="my-32 w-88 max-h-20">
                 {/* <Bar type="" data={lineData} /> */}
             </div>
@@ -129,6 +139,16 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
                 <Pie type="" data={pieData} />
             </div>
             </div>
+
+            <Modal open={open} onClose={modalCloseHandler}>
+                    <Modal.Title> Create New App </Modal.Title>
+                    <Modal.Content>
+                        <div>
+                            
+                        </div>
+                    </Modal.Content>
+                    <Modal.Action passive onClick={() => setOpen(false)}> Cancel </Modal.Action>
+                </Modal>
         </div>
     )
 }
