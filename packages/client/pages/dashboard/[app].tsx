@@ -115,25 +115,13 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
             <Header pageType="dashboard" userName={user.name} appName={App.name} />
 
             <div className="my-32 w-88 max-h-20">
-                <Bar data={lineData} />
+                {/* <Bar type="" data={lineData} /> */}
             </div>
             <div className="flex items-center my-20">
-                <div className="py-20 max-w-md m-12 border-black">
+            <div className="m-4">
                 <Table data={data}>
                     <Table.Column prop="url" label="URL" />
                     <Table.Column prop="pageViews" label="Page Views" />
-                    {/* { data.map(p => {
-                            return (
-                                <tr>
-                                    <td className="border-gray-400">
-                                        {p.key}
-                                    </td> 
-                                    <td className="border-gray-400">
-                                        {p.pageViews}
-                                    </td>
-                                </tr> 
-                            )
-                        }) } */}
                 </Table>
             </div>
 
@@ -145,7 +133,7 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
     )
 }
 
-AppPage.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
     const appId = ctx.query.app;
     const appDataRes = await fetch(`${serverAddr}/app/${appId}`);
     const appData = await appDataRes.json();
@@ -162,7 +150,9 @@ AppPage.getInitialProps = async (ctx) => {
         })
     let pagesData = await pagesRes.json()
     console.log(pagesData)
-    return { pagesData, appData }
+    return {
+        props: { pagesData, appData }
+    }
 }
 
 export default AppPage;

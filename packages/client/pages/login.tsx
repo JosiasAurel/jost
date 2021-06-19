@@ -8,7 +8,7 @@ import { useRouter } from "next/dist/client/router";
 // server address
 const serverAddr: string = "https://0wjb6h.deta.dev";
 
-const RegisterPage: FunctionComponent = (): JSX.Element => {
+const LoginPage: FunctionComponent = (): JSX.Element => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -25,11 +25,10 @@ const RegisterPage: FunctionComponent = (): JSX.Element => {
 
         const newUserInfo = {
             name,
-            password,
             email
         }
 
-        let newUserRes = await fetch(`${serverAddr}/register`, {
+        let newUserRes = await fetch(`${serverAddr}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +37,8 @@ const RegisterPage: FunctionComponent = (): JSX.Element => {
         });
 
         let newUserData = await newUserRes.json();
-        localStorage.setItem("user", JSON.stringify({name: newUserData.name, id: newUserData.id}));
+        console.log(newUserData)
+        localStorage.setItem("user", JSON.stringify({name: newUserData.name, id: newUserData.key}));
         // console.log(newUserData);
         router.replace("/dashboard");
     }
@@ -49,7 +49,7 @@ const RegisterPage: FunctionComponent = (): JSX.Element => {
             <div className="flex justify-center my-24 w-screen">
                 <div className="w-full mx-4 flex justify-center py-20 shadow-md max-w-lg rounded text-cente p-2">
                 <form onSubmit={e => submitRegistrationForm(e)} className="flex flex-col ">
-                    <h2 className="text-center font-bold">Jost Registration</h2>
+                    <h2 className="text-center font-bold">Jost Login</h2>
                 <input onChange={event => inputChangeHandler(event, setName)} type="text" placeholder="name" className="border-indigo-600 text-center my-3 p-2 w-full" value={name} />
                 <input onChange={event => inputChangeHandler(event, setEmail)} type="text" placeholder="email" className="border-indigo-600 text-center my-3 p-2 w-full" value={email} />
                 <input onChange={event => inputChangeHandler(event, setPassword)} type="password" placeholder="password" className="border-indigo-600 text-center my-3 p-2 w-full" value={password} />
@@ -63,4 +63,4 @@ const RegisterPage: FunctionComponent = (): JSX.Element => {
     )
 }
 
-export default RegisterPage;
+export default LoginPage;
