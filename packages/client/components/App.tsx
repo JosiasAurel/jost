@@ -14,7 +14,7 @@ const App: FunctionComponent<AppInfo> = ({ name, description, url, id }): JSX.El
     return (
         <div className="max-w-xs m-4">
             <Link href={`/dashboard/${id}`}>
-                <div className="text-center">
+                <div className="text-center w-full">
                     <Card hoverable>
                     <h2 className="font-bold"> {name} </h2>
                     <p> {description} </p>
