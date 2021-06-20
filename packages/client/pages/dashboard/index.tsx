@@ -22,7 +22,7 @@ const DashboardIndex: FunctionComponent = (): JSX.Element => {
 
     // instance router
     const router = useRouter();
-    const [user, setUser] = useState<JostUser>({name: "", id: "", iat: 1});
+    const [user, setUser] = useState<any>({});
 
     const [d, setD] = useState("");
     useEffect(() => {
