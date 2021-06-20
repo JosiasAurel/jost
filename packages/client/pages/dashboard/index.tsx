@@ -1,17 +1,20 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import App from "../../components/App";
-
+import jwt from "jsonwebtoken";
 import { Modal } from "@geist-ui/react";
 import { useRouter } from "next/router";
 
 // server address
 const serverAddr: string = "https://0wjb6h.deta.dev";
+const SECRET_KEY = `${process.env.SECRET}`;
+
 
 // interfaces
 interface JostUser {
     name: string
     id: string
+    iat: any
 }
 
 
@@ -19,20 +22,22 @@ const DashboardIndex: FunctionComponent = (): JSX.Element => {
 
     // instance router
     const router = useRouter();
+    const [user, setUser] = useState<JostUser>({name: "", id: "", iat: 1});
 
-    const [user, setUser] = useState<JostUser>({name: "", id: ""});
+    const [d, setD] = useState("");
+    useEffect(() => {
+        let token: string = localStorage.getItem("user");
+
+        let user_ = jwt.verify(token, SECRET_KEY);
+
+        setUser(user_);
+        console.log(user_);
+        getUserApps();
+        setD("d")
+    }, [d]);
 
     // user apps 
     const [apps, setApps] = useState([]);
-    const [d, setD] = useState("");
-
-    useEffect(() => {
-        // fetch user info from localstorage
-        const lUser = JSON.parse(localStorage.getItem("user"));
-        setUser(lUser);
-        getUserApps();
-        setD("Done")
-    }, [d]);
 
     // modal and state
     const [open, setOpen] = useState(false);
