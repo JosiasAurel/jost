@@ -4,7 +4,8 @@
   "description": "A simple and mini analytics service for your web apps",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build:server": "tsc packages/server"
   },
   "repository": {
     "type": "git",
