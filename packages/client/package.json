@@ -19,13 +19,10 @@
   "dependencies": {
     "@geist-ui/react": "^2.1.5",
     "chart.js": "^3.3.2",
-    "chartjs": "^0.3.24",
-    "lowlight": "^2.0.1",
     "next": "^10.2.3",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.0.3",
-    "react-dom": "^17.0.2",
-    "recharts": "^2.0.9"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@types/node": "^15.12.1",
