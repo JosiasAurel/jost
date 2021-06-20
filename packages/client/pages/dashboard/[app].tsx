@@ -3,7 +3,6 @@ import Header from "../../components/Header";
 import { Table } from "@geist-ui/react";
 import { Pie, Bar } from "react-chartjs-2";
 import { Modal, Code, Card } from "@geist-ui/react";
-import { lowlight } from "lowlight";
 
 const serverAddr: string = "https://0wjb6h.deta.dev";
 // const serverAddr: string = "http://localhost:8000";
