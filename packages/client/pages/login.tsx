@@ -38,7 +38,7 @@ const LoginPage: FunctionComponent = (): JSX.Element => {
 
         let newUserData = await newUserRes.json();
         console.log(newUserData)
-        localStorage.setItem("user", JSON.stringify({name: newUserData.name, id: newUserData.key}));
+        localStorage.setItem("user", newUserData.token);
         // console.log(newUserData);
         router.replace("/dashboard");
     }

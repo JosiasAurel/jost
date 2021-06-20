@@ -38,7 +38,7 @@ const RegisterPage: FunctionComponent = (): JSX.Element => {
         });
 
         let newUserData = await newUserRes.json();
-        localStorage.setItem("user", JSON.stringify({name: newUserData.name, id: newUserData.id}));
+        localStorage.setItem("user", newUserData.token);
         // console.log(newUserData);
         router.replace("/dashboard");
     }
