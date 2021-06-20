@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import { Table } from "@geist-ui/react";
 import { Pie, Bar } from "react-chartjs-2";
 import { Modal, Code, Card } from "@geist-ui/react";
+import jwt from "jsonwebtoken";
 
 const serverAddr: string = "https://0wjb6h.deta.dev";
 // const serverAddr: string = "http://localhost:8000";
@@ -19,6 +20,7 @@ const serverAddr: string = "https://0wjb6h.deta.dev";
 interface JostUser {
     name: string
     id: string
+    iat: any
 }
 
 interface AppPageProps {
@@ -27,16 +29,23 @@ interface AppPageProps {
     getInitialProps: any
 }
 
+const SECRET_KEY = `${process.env.SECRET}`;
+
 
 const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.Element => {
 
-    const [user, setUser] = useState<JostUser>({name: "", id: ""});
+    const [user, setUser] = useState<JostUser>({name: "", id: "", iat: 1});
 
+    const [d, setD] = useState("");
     useEffect(() => {
-        // fetch user info from localstorage
-        const lUser = JSON.parse(localStorage.getItem("user"));
-        setUser(lUser);
-    }, []);
+        let token: string = localStorage.getItem("user");
+
+        let user_ = jwt.verify(token, SECRET_KEY);
+
+        setUser(user_);
+        console.log(user_);
+        setD("d")
+    }, [d]);
 
     // Setting up the datatets
 

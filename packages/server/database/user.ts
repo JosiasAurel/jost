@@ -38,6 +38,7 @@ function createUser(name: string, password: string, email: string) {
 
 async function loginUser(email: string, name: string) {
     let user = await users.fetch({"name?contains": name, "email?contains": email}).next()
+    // console.log(user.value)
     return user;
 }
 

@@ -1,5 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
+import jwt, { Secret } from "jsonwebtoken";
+import dotenv from "dotenv";
 
 // import CRUD handlers
 import { createUser, deleteUser, loginUser } from "./database/user";
@@ -8,7 +10,12 @@ import { createPage, getPages } from "./database/page";
 
 // import custom libs
 import { thisDate } from "./utils/dateUtil";
-import { stringify } from "querystring";
+
+// config env
+dotenv.config();
+
+const SECRET_KEY = `${process.env.SECRET}`;
+console.log(`SECRET ${SECRET_KEY}`)
 
 const app: Application = express();
 
@@ -37,14 +44,17 @@ app.post("/register", (req: Request, res: Response) => {
 
     let createdUser = createUser(name, password, email);
 
-    res.json(createdUser);
+    const token: string = jwt.sign({name: createdUser.name, id: createdUser.id}, SECRET_KEY as string);
+
+    res.json({token: token});
 });
 
 app.post("/login", async (req: Request, res: Response) => {
     const { name, email } = req.body;
     let user =  await (await loginUser(email, name)).value[0];
-    console.log(user);
-    res.send(user);
+    const token: string = jwt.sign({name: user.name, id: user.key}, SECRET_KEY as string);
+    console.log(SECRET_KEY);
+    res.send({token});
 })
 
 /* App endpoints */

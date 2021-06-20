@@ -41,12 +41,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
+var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+var dotenv_1 = __importDefault(require("dotenv"));
 // import CRUD handlers
 var user_1 = require("./database/user");
 var app_1 = require("./database/app");
 var page_1 = require("./database/page");
 // import custom libs
 var dateUtil_1 = require("./utils/dateUtil");
+// config env
+dotenv_1.default.config();
+var SECRET_KEY = "" + process.env.SECRET;
+console.log("SECRET " + SECRET_KEY);
 var app = express_1.default();
 // resgiter middlewares
 app.use(cors_1.default({
@@ -66,10 +72,11 @@ app.post("/register", function (req, res) {
     // get registraion credentials
     var _a = req.body, name = _a.name, password = _a.password, email = _a.email;
     var createdUser = user_1.createUser(name, password, email);
-    res.json(createdUser);
+    var token = jsonwebtoken_1.default.sign({ name: createdUser.name, id: createdUser.id }, SECRET_KEY);
+    res.json({ token: token });
 });
 app.post("/login", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, email, user;
+    var _a, name, email, user, token;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -78,8 +85,9 @@ app.post("/login", function (req, res) { return __awaiter(void 0, void 0, void 0
             case 1: return [4 /*yield*/, (_b.sent()).value[0]];
             case 2:
                 user = _b.sent();
-                console.log(user);
-                res.send(user);
+                token = jsonwebtoken_1.default.sign({ name: user.name, id: user.key }, SECRET_KEY);
+                console.log(SECRET_KEY);
+                res.send({ token: token });
                 return [2 /*return*/];
         }
     });
