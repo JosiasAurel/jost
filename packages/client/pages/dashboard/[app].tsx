@@ -34,7 +34,7 @@ const SECRET_KEY = `${process.env.SECRET}`;
 
 const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.Element => {
 
-    const [user, setUser] = useState<JostUser>({name: "", id: "", iat: 1});
+    const [user, setUser] = useState<any>({});
 
     const [d, setD] = useState("");
     useEffect(() => {
