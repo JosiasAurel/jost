@@ -9,9 +9,9 @@ import "tailwindcss/tailwind.css"
 const App: FunctionComponent<AppProps> = ({ Component, pageProps }): JSX.Element => {
     return (
         <div>
-            <Head>
+            {/* <Head>
                 <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.2/dist/tailwind.min.css" />
-            </Head>
+            </Head> */}
             <Component {...pageProps} />
         </div>
     )

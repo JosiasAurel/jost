@@ -6,3 +6,16 @@
 body {
   margin: 0;
 }
+
+.feature-cards {
+  display: flex !important;
+  justify-content: space-evenly !important;
+  align-items: center !important;
+  flex-direction: row !important;
+}
+
+@media screen and (max-width: 650px) {
+  #fcs {
+    flex-direction: row !important;
+  }
+}

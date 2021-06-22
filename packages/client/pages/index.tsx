@@ -73,7 +73,7 @@ const Index: FunctionComponent = (): JSX.Element => {
 
         <footer className="flex justify-evenly text-gray-600 ">
             <a href="https://github.com/JosiasAurel/jost">GitHub</a>
-            <a href="">Sponsor</a>
+            <a href="https://www.buymeacoffee.com/rocketstellar">Sponsor</a>
         </footer>
         </article>
     )

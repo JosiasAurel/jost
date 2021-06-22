@@ -138,7 +138,7 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
             <div className="my-32 w-88 max-h-20">
                 {/* <Bar type="" data={lineData} /> */}
             </div>
-            <div className="flex items-center justify-evenly my-20">
+            <div className="flex items-center justify-evenly sm:flex-row flex-col my-20">
             <div className="m-4">
                 <Table data={data}>
                     <Table.Column prop="url" label="URL" />
