@@ -123,7 +123,7 @@ const DashboardIndex: FunctionComponent = (): JSX.Element => {
                 <main>
                     
                     { apps !== [] ?
-                    <div className="mx-8 sm:grid sm:gap-1 sm:grid-cols-4 flex justify-center items-center">
+                    <div className="mx-8 sm:grid sm:gap-1 sm:grid-cols-4 flex flex-col justify-center items-center">
                         { apps.map(app => {
                             return (
                                 <App id={app.key} key={app.key} name={app.name} description={app.description} url={app.baseUrl} />

@@ -34,7 +34,7 @@ const Index: FunctionComponent = (): JSX.Element => {
                 </h2>
 
                 <div className="flex justify-center">
-                    <div className="flex flex-col sm:flex-row "> {/* grid grid-cols-2 grid-rows-2 */}
+                    <div className="sm:flex-row flex flex-col"> {/* grid grid-cols-2 grid-rows-2 */}
                     <FeatureCard 
                         title="Page Views" 
                         description="Track your web app page views." 
