@@ -6,7 +6,8 @@ import Header from "../components/Header";
 import { useRouter } from "next/dist/client/router";
 
 // server address
-const serverAddr: string = "https://0wjb6h.deta.dev";
+const serverAddr: string = `${process.env.SERVER}`;
+const SECRET_KEY: string = `${process.env.SECRET}`;
 
 const RegisterPage: FunctionComponent = (): JSX.Element => {
     const [name, setName] = useState("");

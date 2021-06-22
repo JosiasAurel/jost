@@ -5,8 +5,9 @@ import { Pie, Bar } from "react-chartjs-2";
 import { Modal, Code, Card } from "@geist-ui/react";
 import jwt from "jsonwebtoken";
 
-const serverAddr: string = "https://0wjb6h.deta.dev";
-// const serverAddr: string = "http://localhost:8000";
+// server address
+const serverAddr: string = `${process.env.SERVER}`;
+const SECRET_KEY: string = `${process.env.SECRET}`;
 
 /* interface AppPageProps {
     baseUrl: string
@@ -28,9 +29,6 @@ interface AppPageProps {
     appData: any
     getInitialProps: any
 }
-
-const SECRET_KEY = `${process.env.SECRET}`;
-
 
 const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.Element => {
 
