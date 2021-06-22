@@ -54,7 +54,7 @@ const LoginPage: FunctionComponent = (): JSX.Element => {
                 <input onChange={event => inputChangeHandler(event, setEmail)} type="text" placeholder="email" className="border-indigo-600 text-center my-3 p-2 w-full" value={email} />
                 <input onChange={event => inputChangeHandler(event, setPassword)} type="password" placeholder="password" className="border-indigo-600 text-center my-3 p-2 w-full" value={password} />
                 <button className="bg-blue-600 text-white p-2 rounded">
-                    Register
+                    LogIn
                 </button>
             </form>
             </div>
