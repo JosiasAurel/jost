@@ -4,10 +4,30 @@ import React, { FunctionComponent } from "react";
 import Header from "../components/Header";
 import FeatureCard from "../components/FeatureCard";
 import Link from "next/link";
+import Head from "next/head";
 
 const Index: FunctionComponent = (): JSX.Element => {
     return (
         <article>
+            <Head> 
+<title>Free, Open Source and Minimal analytics service for your web apps.</title>
+<meta name="title" content="Free, Open Source and Minimal analytics service for your web apps."/>
+<meta name="description" content=""/>
+
+
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://jost.vercel.app/"/>
+<meta property="og:title" content="Free, Open Source and Minimal analytics service for your web apps."/>
+<meta property="og:description" content="A free and open mini analytics service"/>
+<meta property="og:image" content="https://i.ibb.co/rvsnwx3/jostOG.png"/>
+
+
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:url" content="https://jost.vercel.app/"/>
+<meta property="twitter:title" content="Free, Open Source and Minimal analytics service for your web apps."/>
+<meta property="twitter:description" content="A free and open mini analytics service"/>
+<meta property="twitter:image" content="https://i.ibb.co/rvsnwx3/jostOG.png"></meta>
+            </Head>
             <Header pageType="any" />
             <main className="my-20 sm:my-36 h-screen w-screen">
                 <h1 className="m-12 text-3xl sm:text-6xl font-bold text-center">
