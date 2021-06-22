@@ -153,6 +153,7 @@ const AppPage: FunctionComponent<AppPageProps> = ({ pagesData, appData }): JSX.E
                     <Modal.Title> Create New App </Modal.Title>
                     <Modal.Content>
                         <div>
+                            <h2 className="text-center">Paste this script in the head tag of the site you widh to track.</h2>
                             <Code>
                                 <Card>
                                     {script_}
