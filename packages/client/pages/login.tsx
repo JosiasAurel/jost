@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import { useRouter } from "next/dist/client/router";
 
 // server address
-const serverAddr: string = `${process.env.SERVER}`;
+const serverAddr: string = `${process.env.JOST_SERVER}`;
 const SECRET_KEY: string = `${process.env.SECRET}`;
 
 const LoginPage: FunctionComponent = (): JSX.Element => {

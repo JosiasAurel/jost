@@ -6,7 +6,7 @@ import { Modal, Code, Card } from "@geist-ui/react";
 import jwt from "jsonwebtoken";
 
 // server address
-const serverAddr: string = `${process.env.SERVER}`;
+const serverAddr: string = `${process.env.JOST_SERVER}`;
 const SECRET_KEY: string = `${process.env.SECRET}`;
 
 /* interface AppPageProps {

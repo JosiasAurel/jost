@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 // server address
-const serverAddr: string = `${process.env.SERVER}`;
+const serverAddr: string = `${process.env.JOST_SERVER}`;
 const SECRET_KEY: string = `${process.env.SECRET}`;
 
 
