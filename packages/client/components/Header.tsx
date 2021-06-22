@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import Link from "next/link";
 
 interface HeaderProps {
     pageType: string
@@ -22,8 +23,10 @@ const Header: FunctionComponent<HeaderProps> = ({ pageType, appName, userName })
             { pageType === "any" ?  
             <nav className="hidden sm:flex mx-6">
                 <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md hover:shadow-dm" href="https://github.com/JosiasAurel/jost">GitHub</a>
-                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md hover:shadow-dm" href="">Sponsor</a>
-                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md hover:shadow-dm"  href="">My Account</a>
+                <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md hover:shadow-dm" href="https://www.buymeacoffee.com/rocketstellar">Sponsor</a>
+                <Link href="/dashboard">
+                    <a className="mx-4 hover:bg-blue-700 hover:text-white p-2 rounded-md hover:shadow-dm" >My Account</a>
+                </Link>
             </nav>
                 :
                 <nav>
