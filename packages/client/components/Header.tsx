@@ -11,10 +11,14 @@ const Header: FunctionComponent<HeaderProps> = ({ pageType, appName, userName })
     return (
         <header className="flex justify-between items-center backdrop-filter max-h-20 rounded bg-gray-50 bg-opacity-50 backdrop-blur-md bg-transparent  w-screen fixed inset-0">
             <nav className="flex m-5 items-center">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to to-blue-700 rounded-lg">
+            <Link href="/">
+                <div className="flex m-5 items-center">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to to-blue-700 rounded-lg">
 
+                </div>
+                <h2 className="sm:text-2xl font-bold mx-3">Jost Analytics</h2>
             </div>
-            <h2 className="sm:text-2xl font-bold mx-3">Jost Analytics</h2>
+            </Link>
 
             { appName ? <h2 className="backdrop-filter backdrop-invert text-white border-white rounded text-bold bg-black p-2" > { appName } </h2> : "" }
             </nav>

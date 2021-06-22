@@ -3,6 +3,7 @@ import React, { FunctionComponent } from "react";
 // import custom components
 import Header from "../components/Header";
 import FeatureCard from "../components/FeatureCard";
+import Link from "next/link";
 
 const Index: FunctionComponent = (): JSX.Element => {
     return (
@@ -19,9 +20,11 @@ const Index: FunctionComponent = (): JSX.Element => {
                 </p>
 
                 <section className="my-20 flex justify-center text-white">
-                <button className=" w-11/12 sm:w-52 text-center font-semibold p-4 bg-indigo-500 rounded-lg ring-4">
-                    Start Measuring
-                </button>
+                <Link href="/register">
+                    <button className=" w-11/12 sm:w-52 text-center font-semibold p-4 bg-indigo-500 rounded-lg ring-4">
+                        Start Measuring
+                    </button>
+                </Link>
             </section>
             </main>
 
