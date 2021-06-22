@@ -4,6 +4,7 @@ import App from "../../components/App";
 import jwt from "jsonwebtoken";
 import { Modal } from "@geist-ui/react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 // server address
 const serverAddr: string = "https://0wjb6h.deta.dev";
@@ -23,17 +24,24 @@ const DashboardIndex: FunctionComponent = (): JSX.Element => {
     // instance router
     const router = useRouter();
     const [user, setUser] = useState<any>({});
-
+    const [isAuth, setIsAuth] = useState(false);
     const [d, setD] = useState("");
+    
     useEffect(() => {
         let token: string = localStorage.getItem("user");
 
-        let user_ = jwt.verify(token, SECRET_KEY);
-
-        setUser(user_);
-        console.log(user_);
+        try {
+            let user_ = jwt.verify(token, SECRET_KEY);
+            setUser(user_);
+            console.log(user_);
+            setIsAuth(true);
+        } catch {
+            setUser({});
+            setIsAuth(false);
+        }
+        
         getUserApps();
-        setD("d")
+        setD("d")    
     }, [d]);
 
     // user apps 
@@ -87,6 +95,26 @@ const DashboardIndex: FunctionComponent = (): JSX.Element => {
         router.reload();
     }
 
+    if (!isAuth) {
+        return (
+            <div>
+                <Header pageType="dashboard" userName="" />
+                <h1 className="text-center text-4xl my-24">Not Authenticated</h1>
+                <div className="flex items-center justify-center">
+                    <div className="flex items-center">
+                    <Link href="/register">
+                    <h2 className="mx-4 hover:bg-blue-700 hover:text-white text-blue-500 p-2 rounded-md hover:shadow-dm">Register</h2>
+                </Link>
+                OR 
+                <Link href="/login">
+                    <h2 className="mx-4 hover:bg-blue-700 hover:text-white text-blue-500 p-2 rounded-md hover:shadow-dm">LogIn</h2>
+                </Link>
+                </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
             <Header pageType="dashboard" userName={user.name} appName="" />
@@ -127,4 +155,44 @@ const DashboardIndex: FunctionComponent = (): JSX.Element => {
     )
 }
 
+/* 
+return (
+        <div>
+            <Header pageType="dashboard" userName={user.name} appName="" />
+            <div className="my-24">
+                <h2 className="text-center">Your Apps</h2>
+                <main>
+                    
+                    { apps !== [] ?
+                    <div className="mx-8 sm:grid sm:gap-1 sm:grid-cols-4 flex justify-center items-center">
+                        { apps.map(app => {
+                            return (
+                                <App id={app.key} key={app.key} name={app.name} description={app.description} url={app.baseUrl} />
+                            )
+                        }) }
+                        
+                    </div> :
+                    <h2 className="text-center">No Apps Yet. Consider Creating One</h2>
+                     }
+                </main>
+                <Modal open={open} onClose={modalCloseHandler}>
+                    <Modal.Title> Create New App </Modal.Title>
+                    <Modal.Content>
+                        <form className="flex flex-col">
+                            <input onChange={event => inputChangeHandler(event, setAppName)} value={appName}  type="text" placeholder="App Name" className="text-center my-3 p-2 w-full" />
+                            <input onChange={event => inputChangeHandler(event, setAppDescription)} value={appDescription} type="text" placeholder="App Descripton" className="text-center my-3 p-2 w-full" />
+                            <input onChange={event => inputChangeHandler(event, setAppBaseURL)} value={appBaseURL}  type="url" placeholder="App Base URL e.g https://jost.io" className="text-center my-3 p-2 w-full" />
+                        </form>
+                    </Modal.Content>
+                    <Modal.Action onClick={() => createApp()}> Submit </Modal.Action>
+                    <Modal.Action passive onClick={() => setOpen(false)}> Cancel </Modal.Action>
+                </Modal>
+                
+                <button onClick={() => setOpen(true)} className="bg-indigo-500 text-white p-1 w-24 h-8 rounded m-4 fixed top-12">
+                    New App
+                </button>
+            </div>
+        </div>
+    )
+*/
 export default DashboardIndex;
