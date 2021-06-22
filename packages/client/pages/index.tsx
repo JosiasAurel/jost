@@ -62,11 +62,13 @@ const Index: FunctionComponent = (): JSX.Element => {
             </section>
 
             <section className="my-52">
-                <h2 className="font-semibold text-5xl text-center">Want to support the project ?</h2>
-
+                <h2 className="font-semibold text-5xl text-center">Do you like this project ?</h2>
+                <div className="flex items-center justify-center my-12">
+                    <a href="https://www.buymeacoffee.com/rocketstellar"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=rocketstellar&button_colour=5F7FFF&font_colour=ffffff&font_family=Comic&outline_colour=000000&coffee_colour=FFDD00" /></a>
+                </div>
             </section>
 
-        <footer className="flex justify-evenly text-gray-600 my-4">
+        <footer className="flex justify-evenly text-gray-600 ">
             <a href="https://github.com/JosiasAurel/jost">GitHub</a>
             <a href="">Sponsor</a>
         </footer>
