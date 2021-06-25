@@ -59,9 +59,9 @@ const LoginPage: FunctionComponent = (): JSX.Element => {
                     LogIn
                 </button>
               <p className="text-center">
-                   Already have an account ? 
+                   Don't yet have an account ? 
                    <Link href="/register"> 
-                      <a>LogIn</a> 
+                      <a className="text-blue-600">Register</a> 
                    </Link> 
               </p>
             </form>
