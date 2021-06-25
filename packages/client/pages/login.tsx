@@ -58,7 +58,12 @@ const LoginPage: FunctionComponent = (): JSX.Element => {
                 <button className="bg-blue-600 text-white p-2 rounded">
                     LogIn
                 </button>
-              <p className="text-center">Already have an account ? <Link href="/login"> <a>LogIn</a> </Link> </p>
+              <p className="text-center">
+                   Already have an account ? 
+                   <Link href="/login"> 
+                      <a>LogIn</a> 
+                   </Link> 
+              </p>
             </form>
             </div>
             </div>
