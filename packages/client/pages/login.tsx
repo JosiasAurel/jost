@@ -60,7 +60,7 @@ const LoginPage: FunctionComponent = (): JSX.Element => {
                 </button>
               <p className="text-center">
                    Already have an account ? 
-                   <Link href="/login"> 
+                   <Link href="/register"> 
                       <a>LogIn</a> 
                    </Link> 
               </p>
