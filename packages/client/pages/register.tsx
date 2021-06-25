@@ -61,7 +61,7 @@ const RegisterPage: FunctionComponent = (): JSX.Element => {
            <p className="text-center">
                    Already have an account ? 
                    <Link href="/login"> 
-                      <a>LogIn</a> 
+                      <a className="text-indigo-500"> LogIn</a> 
                    </Link> 
               </p>
             </form>
