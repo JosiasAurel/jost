@@ -14,7 +14,7 @@ const Index: FunctionComponent = (): JSX.Element => {
 <meta name="title" content="Free, Open Source and Minimal analytics service for your web apps."/>
 <meta name="description" content=""/>
 
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://jost.vercel.app/"/>
 <meta property="og:title" content="Free, Open Source and Minimal analytics service for your web apps."/>
