@@ -1,4 +1,13 @@
-# Jost Analytics
+# Jost Analytics (At Work)
+
+⚠⚠
+The current version of the app is unstable and has a good number of features lacking.
+There are no good documentations to make it easier for one to use it and therefore will not be very good to use right now
+Authentication is broken. I will migrate the authentication system to be passwordless very soon (working on one)
+Overall, this project is open source and therefore, all contributions minor or major will be review and considered.
+
+Thank You ;)
+⚠⚠
 
 A simple and mini analytics service for your mini projects.
 
