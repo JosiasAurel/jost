@@ -1,4 +1,4 @@
-# Jost Analytics (At Work)
+# Jost Analytics (Pending)
 
 ⚠⚠
 The current version of the app is unstable and has a good number of features lacking.
