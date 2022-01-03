@@ -42,17 +42,24 @@ app.post("/register", (req: Request, res: Response) => {
     // get registraion credentials
     const { name, password, email } = req.body;
 
+    if (!name || !password || !email) {
+        res.status(400).json({message: 'Invalid request.'})
+    }
+
     let createdUser = createUser(name, password, email);
 
-    const token: string = jwt.sign({name: createdUser.name, id: createdUser.id}, SECRET_KEY as string);
+    const token: string = jwt.sign({name: createdUser.name, id: createdUser.id}, SECRET_KEY);
 
     res.json({token: token});
 });
 
 app.post("/login", async (req: Request, res: Response) => {
     const { name, email } = req.body;
+    if (!name || !email) {
+        res.status(400).json({message: 'Invalid request.'})
+    }
     let user =  await (await loginUser(email, name)).value[0];
-    const token: string = jwt.sign({name: user.name, id: user.key}, SECRET_KEY as string);
+    const token: string = jwt.sign({name: user.name, id: user.key}, SECRET_KEY);
     console.log(SECRET_KEY);
     res.send({token});
 })
